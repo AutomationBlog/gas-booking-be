@@ -1,36 +1,46 @@
-// Express Server
 import express from "express";
-const app = express();
 import cors from "cors";
-import mongoose from "mongoose";
 import dotenv from "dotenv";
+import mongoose from "mongoose";
 
-dotenv.config();
-app.use(cors());
+const app = express();
+
+// Middlewares
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+dotenv.config();
 
-// Connect to MongoDB
+//MongoDB
+let URI = process.env.CLOUD_MONGODB_URL;
+if (process.env.isLOCAL) {
+  URI = process.env.LOCAL_MONGODB_URL;
+}
+
 mongoose
-  .connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
+  .connect(URI, {
     useUnifiedTopology: true,
+    useNewUrlParser: true,
     useCreateIndex: true,
-    useFindAndModify: true,
   })
-  .then(console.log("Connected to MongoDB"))
-  .catch((err) => console.log(err));
+  .then(() => {
+    console.log("DB Connected");
+  })
+  .catch((err) => {
+    console.log("Error while connecting to DB", err.message);
+  });
 
-app.use("/api", require("./routes/gasBooking"));
-
-// Routes
-app.get("/api", (req, res) => {
-  res.send("Hello World!");
+//Global Error Handler
+app.use((err, req, res, next) => {
+  err.statusCode = err.statusCode || 500;
+  err.message = err.message || "Internal Server Error";
+  err.status = err.status || "error";
+  console.log(err);
+  res.status(err.statusCode).json({ status: err.status, message: err.message });
 });
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+//Server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
