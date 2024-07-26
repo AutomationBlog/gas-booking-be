@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import authRoute from "./routes/authRoute.js";
 
 const app = express();
 
@@ -10,6 +11,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 dotenv.config();
+
+//Routes
+app.use("/api/auth", authRoute);
 
 //MongoDB
 let URI = process.env.CLOUD_MONGODB_URL;
