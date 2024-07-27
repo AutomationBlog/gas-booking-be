@@ -25,9 +25,9 @@ npm run start
 
 ## .env
 
-- LOCAL_MONGODB_URL= mongodb://localhost:27017/<DBNAME>
-- CLOUD_MONGODB_URL= mongodb+srv://<USERNAME>:<PASSWORD>@<CLUSTER>/<DBNAME>?retryWrites=true&w=majorityappName=<CLUSTER>
+- LOCAL_MONGODB_URL= mongodb://localhost:27017/DBNAME
+- CLOUD_MONGODB_URL= mongodb+srv://USERNAME:PASSWORD@CLUSTER/DBNAME?retryWrites=true&w=majorityappName=CLUSTER
 - PORT=3000
 - isLOCAL="false"
-- JWT_SECRET=<JWT_SECRET>
+- JWT_SECRET=JWT_SECRET
 - JWT_EXPIRES_IN=1d
