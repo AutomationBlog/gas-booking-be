@@ -5,7 +5,7 @@ import createError from "../utils/appError.js";
 import bcrypt from "bcryptjs";
 
 // @desc    Register new user
-export const registerUser = asyncHandler(async (req, res) => {
+const registerUser = asyncHandler(async (req, res, next) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (user) {
@@ -21,7 +21,7 @@ export const registerUser = asyncHandler(async (req, res) => {
     const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRES_IN,
     });
-    res.staus(201).json({
+    res.status(201).json({
       status: "success",
       message: "User created successfully",
       token,
@@ -37,10 +37,10 @@ export const registerUser = asyncHandler(async (req, res) => {
 });
 
 // @desc    Login user
-export const loginUser = asyncHandler(async (req, res) => {
+const loginUser = asyncHandler(async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: email });
     if (!user) {
       return next(new createError("User not found!", 404));
     }
@@ -66,3 +66,18 @@ export const loginUser = asyncHandler(async (req, res) => {
     next(error);
   }
 });
+
+// @desc    Get current logged in user
+const getMe = asyncHandler(async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user.id);
+    res.status(200).json({
+      status: "success",
+      user,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+export { registerUser, loginUser, getMe };

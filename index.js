@@ -8,25 +8,26 @@ const app = express();
 
 // Middlewares
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 dotenv.config();
 
 //Routes
 app.use("/api/auth", authRoute);
 
+//Home
+app.get("/", (req, res) => {
+  res.send("Home Page");
+});
+
 //MongoDB
 let URI = process.env.CLOUD_MONGODB_URL;
-if (process.env.isLOCAL) {
+if (process.env.isLOCAL === "true") {
   URI = process.env.LOCAL_MONGODB_URL;
 }
+// console.log(URI);
 
 mongoose
-  .connect(URI, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useCreateIndex: true,
-  })
+  .connect(URI)
   .then(() => {
     console.log("DB Connected");
   })
