@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import authRoute from "./routes/authRoute.js";
+import booking from "./routes/bookingRoute.js";
 
 const app = express();
 
@@ -13,6 +14,7 @@ dotenv.config();
 
 //Routes
 app.use("/api/auth", authRoute);
+app.use("/booking", booking);
 
 //Home
 app.get("/", (req, res) => {
