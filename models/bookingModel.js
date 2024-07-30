@@ -5,36 +5,20 @@ const bookingSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  email: {
+  agencyname: {
     type: String,
     required: true,
-  },
-  phone: {
-    type: Number,
-    required: true,
-  },
-  address: {
-    type: String,
-    required: true,
-  },
-  pincode: {
-    type: Number,
-    required: true,
-  },
-  gasagencyname: {
-    type: Number,
-    required: true,
-  },
-  signupid: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
   },
   datetime: {
-    type: string,
+    type: String,
     required: true,
   },
   bookingid: {
     type: Number,
+    required: true,
+  },
+  status: {
+    type: String,
     required: true,
   },
 });

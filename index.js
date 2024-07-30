@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import authRoute from "./routes/authRoute.js";
 import booking from "./routes/bookingRoute.js";
+import profile from "./routes/userProfileRoute.js";
 
 const app = express();
 
@@ -15,6 +16,7 @@ dotenv.config();
 //Routes
 app.use("/api/auth", authRoute);
 app.use("/booking", booking);
+app.use("/profile", profile);
 
 //Home
 app.get("/", (req, res) => {

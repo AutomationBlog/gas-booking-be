@@ -8,6 +8,7 @@ export const createBooking = async (req, res, next) => {
     const booking = await Booking.create({
       ...req.body,
       bookingid: bookingID,
+      status: "open",
     });
     res.status(201).json({
       status: "success",
@@ -33,9 +34,10 @@ export const getBookings = async (req, res, next) => {
 
 export const getBooking = async (req, res, next) => {
   try {
-    const booking = await Booking.findById(req.params.id);
+    const booking = await Booking.findOne({ name: req.params.id });
     res.status(200).json({
       status: "success",
+      message: "Booking fetched successfully",
       booking,
     });
   } catch (error) {
@@ -45,9 +47,13 @@ export const getBooking = async (req, res, next) => {
 
 export const updateBooking = async (req, res, next) => {
   try {
-    const booking = await Booking.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
+    const booking = await Booking.updateOne(
+      { bookingid: Number(req.params.id) },
+      req.body,
+      {
+        new: true,
+      }
+    );
     res.status(200).json({
       status: "success",
       booking,
@@ -59,7 +65,9 @@ export const updateBooking = async (req, res, next) => {
 
 export const deleteBooking = async (req, res, next) => {
   try {
-    const booking = await Booking.findByIdAndDelete(req.params.id);
+    const booking = await Booking.deleteOne({
+      bookingid: Number(req.params.id),
+    });
     res.status(200).json({
       status: "success",
       booking,

@@ -67,17 +67,4 @@ const loginUser = asyncHandler(async (req, res, next) => {
   }
 });
 
-// @desc    Get current logged in user
-const getMe = asyncHandler(async (req, res, next) => {
-  try {
-    const user = await User.findById(req.user.id);
-    res.status(200).json({
-      status: "success",
-      user,
-    });
-  } catch (error) {
-    next(error);
-  }
-});
-
-export { registerUser, loginUser, getMe };
+export { registerUser, loginUser };
