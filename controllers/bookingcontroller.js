@@ -34,7 +34,7 @@ export const getBookings = async (req, res, next) => {
 
 export const getBooking = async (req, res, next) => {
   try {
-    const booking = await Booking.findOne({ name: req.params.id });
+    const booking = await Booking.find({ name: req.params.id });
     res.status(200).json({
       status: "success",
       message: "Booking fetched successfully",
@@ -70,6 +70,7 @@ export const deleteBooking = async (req, res, next) => {
     });
     res.status(200).json({
       status: "success",
+      message: req.params.id + " - Booking deleted successfully",
       booking,
     });
   } catch (error) {
