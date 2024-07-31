@@ -8,7 +8,7 @@ export const createBooking = async (req, res, next) => {
     const booking = await Booking.create({
       ...req.body,
       bookingid: bookingID,
-      status: "open",
+      status: "Open",
     });
     res.status(201).json({
       status: "success",
@@ -20,9 +20,9 @@ export const createBooking = async (req, res, next) => {
   }
 };
 
-export const getBookings = async (req, res, next) => {
+export const getAllBookings = async (req, res, next) => {
   try {
-    const bookings = await Booking.find();
+    const bookings = await Booking.find({});
     res.status(200).json({
       status: "success",
       bookings,

@@ -1,7 +1,7 @@
 import express from "express";
 import {
   createBooking,
-  getBookings,
+  getAllBookings,
   getBooking,
   updateBooking,
   deleteBooking,
@@ -16,6 +16,6 @@ router.patch("/:id", updateBooking);
 
 router.delete("/:id", deleteBooking);
 
-router.get("/all", getBookings);
+router.get("/get/all", getAllBookings);
 
 export default router;
