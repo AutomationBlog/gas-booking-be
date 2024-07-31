@@ -31,3 +31,15 @@ npm run start
 - isLOCAL="false"
 - JWT_SECRET=JWT_SECRET
 - JWT_EXPIRES_IN=1d
+
+## API Endpoints
+
+- /api/auth/register - Register new user
+- /api/auth/login - Login user
+- /priofile/update - Update user profile
+- /priofile/get/:email- Get user profile
+- /booking/get/all - Get all user bookings for admin
+- /booking/:id - Get booking using username
+- /booking/create - Create booking by user
+- /booking/:id - Update booking using booking id by both user and admin
+- /booking/:id - Delete booking using booking id by both user and admin
