@@ -56,6 +56,7 @@ export const updateBooking = async (req, res, next) => {
     );
     res.status(200).json({
       status: "success",
+      message: "Booking updated successfully",
       booking,
     });
   } catch (error) {
