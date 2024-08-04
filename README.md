@@ -4,6 +4,8 @@ Gas booking backend API
 
 ## API Endpoints
 
+First start the backend API and then start the frontend app.
+
 [Gas Booking Backend API](https://gas-booking-api.onrender.com/)
 
 [Gas Booking Frondend APP](https://gas-booking-app.netlify.app/)
