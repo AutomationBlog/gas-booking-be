@@ -6,6 +6,8 @@ Gas booking backend API
 
 [Gas Booking Backend API](https://gas-booking-api.onrender.com/)
 
+[Gas Booking Frondend APP](https://gas-booking-app.netlify.app/)
+
 ## Dependencies
 
 - bcryptjs
@@ -48,3 +50,9 @@ npm run start
 - /booking/:id - Delete booking using booking id by both user and admin
 - /payment/orders - Create order for payment
 - /payment/verify - Verify payment using order id
+
+## Git Repository
+
+[Backend Repository](https://github.com/automationblog/gas-booking-be)
+
+[Frontend Repository](https://github.com/automationblog/gas-booking-fe)
